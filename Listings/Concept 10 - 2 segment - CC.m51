@@ -1,0 +1,115 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    10/24/2024  11:06:16  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\task10.obj TO .\Objects\Concept 10 - 2 segment - CC PRINT (.\Listings\Concept 10 -
+>>  2 segment - CC.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\task10.obj (TASK10)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Concept 10 - 2 segment - CC (TASK10)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?TASK10
+            IDATA   0019H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0048H     UNIT         ?PR?MAIN?TASK10
+            CODE    08D4H     0020H     UNIT         ?PR?_DELAY?TASK10
+            CODE    08F4H     000DH     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Concept 10 - 2 segment - CC (TASK10)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TASK10
+  +--> ?C_INITSEG
+
+?PR?MAIN?TASK10
+  +--> ?PR?_DELAY?TASK10
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Concept 10 - 2 segment - CC (TASK10)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TASK10
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  10/24/2024  11:06:16  PAGE 2
+
+
+  D:00B0H         PUBLIC        P3
+  C:08D4H         PUBLIC        _delay
+  D:0008H         PUBLIC        d1
+  D:0009H         PUBLIC        d2
+  C:088CH         PUBLIC        main
+  D:000AH         PUBLIC        a
+  D:000CH         PUBLIC        b
+  D:000EH         PUBLIC        i
+  D:000FH         PUBLIC        arr_cc
+  B:00B0H.0       PUBLIC        D1
+  B:00B0H.1       PUBLIC        D2
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        d
+  -------         DO            
+  D:0002H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:08D4H         LINE#         10
+  C:08D4H         LINE#         11
+  C:08D4H         LINE#         13
+  C:08DEH         LINE#         14
+  C:08DEH         LINE#         15
+  C:08ECH         LINE#         16
+  C:08F3H         LINE#         17
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  C:088CH         LINE#         19
+  C:088CH         LINE#         20
+  C:088CH         LINE#         21
+  C:0891H         LINE#         62
+  C:0891H         LINE#         63
+  C:0891H         LINE#         64
+  C:0894H         LINE#         65
+  C:0894H         LINE#         66
+  C:0898H         LINE#         67
+  C:08A0H         LINE#         68
+  C:08A8H         LINE#         69
+  C:08AFH         LINE#         70
+  C:08B3H         LINE#         71
+  C:08BCH         LINE#         72
+  C:08C4H         LINE#         73
+  C:08C9H         LINE#         74
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        TASK10
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0074H BYTE ( 5%) *
+******************************************************************************
+
+Program Size: data=26.0 xdata=0 code=260
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

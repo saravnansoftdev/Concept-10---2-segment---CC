@@ -1,0 +1,192 @@
+C51 COMPILER V9.60.7.0   TASK10                                                            10/24/2024 11:06:16 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TASK10
+OBJECT MODULE PLACED IN .\Objects\task10.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE task10.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ta
+                    -sk10.lst) TABS(2) OBJECT(.\Objects\task10.obj)
+
+line level    source
+
+   1          
+   2          #include<reg51.h>
+   3          
+   4          sbit D1 = P3^0;
+   5          sbit D2 = P3^1;
+   6          
+   7          //for 7 segment cc...
+   8          unsigned char d1,d2,i;
+   9          unsigned char arr_cc[10] = {0x3f, 0x06, 0x5b,0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
+  10          void delay(unsigned int d)
+  11          {
+  12   1        unsigned int i,j;
+  13   1        for(j=0; j<d; j++)
+  14   1        {
+  15   2          for(i=0; i<8400; i++);
+  16   2        }
+  17   1      }
+  18          unsigned int a,b;
+  19          void main(void)
+  20          {
+  21   1        P2 = P3 = 0x00;
+  22   1      /*  
+  23   1        while(1)
+  24   1        {
+  25   1          
+  26   1            D1 = 1; D2 = 0;
+  27   1            P2 = arr_cc[0];
+  28   1            delay(1);
+  29   1            D1 = 0; D2 = 1;
+  30   1            P2 = arr_cc[1];
+  31   1            delay(1); */
+  32   1            /*
+  33   1            for(a=0; a<10; a++)
+  34   1            {
+  35   1              for(b=0; b<10; b++)
+  36   1              {
+  37   1                D1=1; D2=0;
+  38   1                P2 = arr_cc[b];
+  39   1                delay(1);
+  40   1                D1=0; D2=1;
+  41   1                P2 = arr_cc[a];
+  42   1                delay(15);
+  43   1              }
+  44   1            }
+  45   1          */
+  46   1          //Working is fine....
+  47   1          /*
+  48   1          while(1)
+  49   1          {
+  50   1            for(a=0; a<10; a++)
+  51   1            {
+  52   1              for(b=0; b<10; b++)
+  53   1              {
+  54   1                D1=1; D2=0; 
+C51 COMPILER V9.60.7.0   TASK10                                                            10/24/2024 11:06:16 PAGE 2   
+
+  55   1                P2 = arr_cc[b];delay(1);
+  56   1                D1=0; D2=1; 
+  57   1                P2 = arr_cc[a];delay(3);
+  58   1              }
+  59   1            }
+  60   1          }
+  61   1          */
+  62   1          while(1)
+  63   1          {
+  64   2            for(i=1; i<100; i++)
+  65   2            {
+  66   3              D1=1; D2=0;
+  67   3              d1 = i/10;
+  68   3              P2 = arr_cc[d2];
+  69   3              delay(1);
+  70   3              D1=0; D2=1;
+  71   3              d2 = i%10;
+  72   3              P2 = arr_cc[d1];
+  73   3              delay(4);
+  74   3            }
+  75   2          }
+  76   1      }
+  77            
+  78          
+  79          
+  80          
+  81          
+  82          
+  83          
+  84          /*
+  85          //For delay...
+  86          #define DEL 1
+  87          
+  88          sbit D1 = P3^0;
+  89          sbit D2 = P3^1;
+  90          
+  91          sbit led = P2^7;
+  92          
+  93          //function declarations...
+  94          void portInit(void);
+  95          void delay(unsigned char);
+  96          void delay50ms(void);
+  97            
+  98          //for common cathode...
+  99          unsigned char arr_cc[10] = {0x3f, 0x06, 0x5b,0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
+ 100          unsigned char data1,data2;
+ 101          //unsigned int data = 8;
+ 102          unsigned char i;
+ 103          
+ 104          int main(void)
+ 105          {
+ 106            //unsigned char i;
+ 107            portInit();
+ 108            
+ 109            //D1 = 1;
+ 110            //D2 = 1;
+ 111            
+ 112            //for(i=1; i<10; i++)
+ 113            //{
+ 114              //D2 = 1;
+ 115              //P2 = arr_cc[i];
+ 116              //delay(DEL);
+C51 COMPILER V9.60.7.0   TASK10                                                            10/24/2024 11:06:16 PAGE 3   
+
+ 117            //}
+ 118            
+ 119            while(1)
+ 120            {
+ 121              
+ 122            /*
+ 123              for(i=0; i<100; i++)
+ 124              {
+ 125                D1 = 1;
+ 126                D2 = 0;
+ 127                P2 = arr_cc[i/10];
+ 128                D1 = 0;
+ 129                D2 = 1;
+ 130                P2 = arr_cc[i%10];
+ 131            }
+ 132            
+ 133            //return 0;
+ 134          }
+ 135          
+ 136          /*
+ 137          void delay50ms(void)
+ 138          {
+ 139            unsigned char a,b;
+ 140            for(a=1; a<=25000; a++)
+ 141            {
+ 142              //for(b=0; b<8500; b++);
+ 143            }
+ 144          }
+ 145          
+ 146          
+ 147          //for Delay...
+ 148          void delay(unsigned char sec)
+ 149          {
+ 150            unsigned int i, j;
+ 151            for(i=1; i<=sec; i++)
+ 152            {
+ 153              for(j=0; j<17000; j++);
+ 154            }
+ 155          }
+ 156          
+ 157          
+ 158          //Port Initialization...
+ 159          void portInit(void)
+ 160          {
+ 161            P2 = 0x00;
+ 162            P3 = 0x00;
+ 163          }
+ 164          */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    104    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
